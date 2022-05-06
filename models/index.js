@@ -1,3 +1,13 @@
 const User = require('./User');
+const Post = require('./Post');
+const Goal = require('./Goal');
 
-module.exports = { User };
+User.hasMany(Post);
+
+Post.belongsTo(User);
+
+User.hasOne(Goal);
+
+Goal.belongsTo(User);
+
+module.exports = { User, Post, Goal };
