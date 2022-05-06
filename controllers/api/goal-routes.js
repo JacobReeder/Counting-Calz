@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User, Goal } = require('../../models');
+const { User, Goal } = require('../../models');
 
 // get the goal
 router.get('/:id', (req, res) => {
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  Post.update(
+  Goal.update(
     {
       calorie_count: req.body.calorie_count,
     },
