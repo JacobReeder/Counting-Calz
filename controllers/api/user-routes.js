@@ -46,13 +46,33 @@ router.post('/', (req, res) => {
     });
 });
 
-// (Probably wont use) PUT /api/users/1
-/**
- * // PUT /api/users/1
-router.put('/:id', (req, res) => {
+router.post('/login', (req, res) => {
+  User.findOne({
+    where: {
+      email: req.body.email
+    }
+  }).then(dbUserData => {
+    if (!dbUserData) {
+      res.status(400).json({ message: 'No user with that email address!' });
+      return;
+    }
 
-  // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
+    // Verify user
+    const validPassword = dbUserData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res.status(400).json({ message: 'NOPE! WRONG!' });
+      return;
+    }
+
+    res.json({ user: dbUserData, message: 'You are now logged in' });
+
+  });  
+});
+
+router.put('/:id', (req, res) => {
   User.update(req.body, {
+    individualHooks: true,
     where: {
       id: req.params.id
     }
@@ -69,7 +89,7 @@ router.put('/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
- */
+ 
 
 // Probably wont user) DELETE /api/users/1
 // DELETE /api/users/1
