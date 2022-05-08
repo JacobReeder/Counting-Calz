@@ -10,14 +10,6 @@ Post.belongsTo(User, {
   foreignKey: 'user_id',
 });
 
-User.belongsToMany(Post, {
-  foreignKey: 'user_id',
-});
-
-Post.belongsToMany(User, {
-  foreignKey: 'user_id',
-});
-
 User.hasOne(Goal, {
   foreignKey: 'user_id',
 });
