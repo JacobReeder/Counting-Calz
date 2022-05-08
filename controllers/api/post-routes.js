@@ -1,9 +1,5 @@
 const router = require('express').Router();
 const { Post, User } = require('../../models');
-// Mental note: Why include User? In a query to the post table,
-// we would like to retrieve not only information about each post,
-// but also the user that posted it. With the foreign key, user_id,
-// we can form a JOIN, an essential characteristic of the relational data model.
 
 // get all users
 router.get('/', (req, res) => {
