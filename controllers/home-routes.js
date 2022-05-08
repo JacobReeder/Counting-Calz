@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 const { Post, User, Goal  } = require('../models');
 
 router.get('/', (req, res) => {
-  console.log(req.session);
+ 
     res.render('homepage', {
       id: 1,
       meal_desc: '',
@@ -50,27 +50,15 @@ router.get('/', (req, res) => {
       });
   });*/
 
-  /*router.get('/post/:id', (req, res) => { ////Module code with mock test info. Replace with our Post models attributes and mock a test post
-    const post = {
-      id: 1,
-      post_url: 'https://handlebarsjs.com/guide/',
-      title: 'Handlebars Docs',
-      created_at: new Date(),
-      vote_count: 10,
-      comments: [{}, {}],
-      user: {
-        username: 'test_user'
-      }
-    };
   
-    res.render('single-post', { post });
-  });*/
+  
+  
 
   router.get('/login', (req, res) => {
-   /* if (req.session.loggedIn) {  /////if already logged in. Add logout first before uncommenting
+    if (req.session.loggedIn) {  /////if already logged in. Add logout first before uncommenting
       res.redirect('/');
       return;
-    }*/
+    }
     res.render('login');
   });
 
