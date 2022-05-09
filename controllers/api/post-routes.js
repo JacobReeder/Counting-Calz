@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const { Post, User } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // get all users
 router.get('/', (req, res) => {
   Post.findAll({
-    attributes: ['id', 'meal_desc', 'calories', 'user_id'],
+    attributes: ['id', 'meal_desc', 'calories', 'date_time', 'user_id'],
     include: [
       {
         model: User,
@@ -24,7 +25,7 @@ router.get('/:id', (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ['id', 'meal_desc', 'calories', 'user_id'],
+    attributes: ['id', 'meal_desc', 'calories', 'date_time', 'user_id'],
     include: [
       {
         model: User,
@@ -45,11 +46,12 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
   Post.create({
-    title: req.body.title,
-    post_url: req.body.post_url,
-    user_id: req.body.user_id,
+    meal_desc: req.body.mealDesc,
+    calories: parseInt(req.body.calories, 10),
+    date_time: req.body.dateTime,
+    user_id: req.session.user_id,
   })
     .then((dbPostData) => res.json(dbPostData))
     .catch((err) => {

@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const User = require('./User');
 
 // create our Post model
 class Post extends Model {}
@@ -16,7 +15,7 @@ Post.init(
     },
     // description of the meal the user is posting
     meal_desc: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     // number of calories consumed with this meal
@@ -24,12 +23,17 @@ Post.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    // allows the calendar to put the date in
+    // Cant figure out why this date section breaks everything!!!
+    // date_time: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
     // references the user that posted this meal
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       references: {
-        model: User,
+        model: 'user',
         key: 'id',
       },
     },
@@ -43,4 +47,4 @@ Post.init(
   },
 );
 
-module.exports = User;
+module.exports = Post;
