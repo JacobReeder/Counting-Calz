@@ -44,10 +44,9 @@ router.post('/', (req, res) => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
         req.session.loggedIn = true;
-      
-      res.json(dbUserData);
-    });
-  })
+        res.json(dbUserData);
+      });
+    })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
@@ -55,6 +54,8 @@ router.post('/', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
+  console.log(req.body);
+  console.log(req.body.email);
   User.findOne({
     where: {
       email: req.body.email,
@@ -79,13 +80,12 @@ router.post('/login', (req, res) => {
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
 
-    res.json({ user: dbUserData, message: 'You are now logged in' });
+      res.json({ user: dbUserData, message: 'You are now logged in' });
     });
   });
 });
 
 router.post('/logout', (req, res) => {
-
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();

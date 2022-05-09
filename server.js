@@ -7,6 +7,7 @@ const session = require('express-session');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const exphbs = require('express-handlebars');
+
 const hbs = exphbs.create({});
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
@@ -16,8 +17,8 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
-  })
+    db: sequelize,
+  }),
 };
 
 app.use(session(sess));
@@ -29,10 +30,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public'))); // links the css sheet from 'public'
 
-
-
 // turn on routes
-app.use(require('./controllers/'));
+app.use(require('./controllers'));
 
 // turn on connection to db and server
 sequelize.sync({ force: false }).then(() => {
