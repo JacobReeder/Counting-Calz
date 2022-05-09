@@ -90,11 +90,9 @@ router.post('/logout', (req, res) => {
     req.session.destroy(() => {
       res.status(204).end();
     });
-  }
-  else {
+  } else {
     res.status(404).end();
   }
-
 });
 
 router.put('/:id', (req, res) => {
