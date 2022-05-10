@@ -10,27 +10,28 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
-<body>
-  <div class="container ">
-    <div class="row">
+<body class="bg-info bg-opacity-25">
+  <div class="container-fluid">
+    <div class="row bg-danger bg-gradient">
       <div class="col-4">
         <a href="/">
-          <h1 class="fs-1 fw-bold">
+          <h1 class="fs-1 fw-bold text-white">
             Calorie Counter
           </h1>
         </a>
-        <nav>
-          {{#if loggedIn}}
-          <button id="logout" class="btn-no-style">logout</button>
-          {{/if}}
-        </nav>
+      </div>
+      <div class="col-5"><!--spacer--></div>
+      <div class="col-3">
+        {{#if loggedIn}}
+        <button id="logout" class="fs-5 fw-bold text-dark text-opacity-75 btn-light mt-2 me-0 float-end">Logout</button>
+        {{/if}}
       </div>
     </div>
     <main>
       {{{ body }}}
     </main>
-    <footer>
-      Thanks for visiting!
+    <footer class="position-absolute bottom-0 start-50 translate-middle-x text-danger">
+      COOL MAN
     </footer>
   </div>
 
