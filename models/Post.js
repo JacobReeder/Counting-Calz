@@ -15,7 +15,7 @@ Post.init(
     },
     // description of the meal the user is posting
     meal_desc: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(240),
       allowNull: false,
     },
     // number of calories consumed with this meal
@@ -25,10 +25,10 @@ Post.init(
     },
     // allows the calendar to put the date in
     // Cant figure out why this date section breaks everything!!!
-    // date_time: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
+    date_time: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     // references the user that posted this meal
     user_id: {
       type: DataTypes.INTEGER,
