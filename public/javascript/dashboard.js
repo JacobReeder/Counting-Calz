@@ -25,4 +25,29 @@ async function newPostSubmit(event) {
   }
 }
 
+async function rndMeal() {
+  // const url = 'https://www.themealdb.com/api/json/v1/9973533/random.php';
+  const url = 'https://www.themealdb.com/api/json/v1/1/random.php';
+
+  console.log(url);
+
+  rndMealEl.innerHtml = '';
+  fetch(url)
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res.meals[0]);
+      if (res.meals[0].strSource !== '') {
+        console.log(res.meals[0].strSource);
+      } else {
+        rndMeal();
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  // rndMealEl.innerHtml = '<a href=""'
+}
+
+rndMeal();
+
 document.getElementById('new-post-form').addEventListener('submit', newPostSubmit);

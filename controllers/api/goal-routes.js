@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   // expects {calorie_goal: 3200, user_id: 1}
   Goal.create({
-    calorie_goal: req.body.calorie_goal,
+    calorie_goal: parseInt(req.body.calorie_goal, 10),
     user_id: req.body.user_id,
   })
     .then((dbPostData) => res.json(dbPostData))
