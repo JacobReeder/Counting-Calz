@@ -34,13 +34,20 @@ async function rndMeal() {
   console.log(url);
 
   rndMealEl.innerHtml = '';
-  const mealResponse = await fetch(url);
-  console.log(mealResponse);
-  if (mealResponse.ok) {
-    const link = mealResponse.meals[0].strSource;
-    console.log(link);
-    // rndMealEl.innerHtml = '<a href=""'
-  }
+  fetch(url)
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res.meals[0]);
+      if (res.meals[0].strSource !== '') {
+        console.log(res.meals[0].strSource);
+      } else {
+        rndMeal();
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  // rndMealEl.innerHtml = '<a href=""'
 }
 
 rndMeal();
