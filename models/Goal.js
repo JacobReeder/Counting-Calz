@@ -12,7 +12,7 @@ Goal.init(
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: false,
     },
     // creates a column for the calorie goal
     calorie_goal: {

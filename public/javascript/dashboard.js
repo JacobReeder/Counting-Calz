@@ -60,7 +60,7 @@ function showGoal() {
 }
 
 async function postGoal(newGoalPost) {
-  const goalUpdateRes = await fetch('/api/goals/1', {
+  const goalUpdateRes = await fetch('/api/goals', {
     method: 'POST',
     body: JSON.stringify({
       newGoalPost,
@@ -77,6 +77,7 @@ async function postGoal(newGoalPost) {
 }
 
 async function putGoal(newGoalVal) {
+  console.log('here');
   const goalUpdateRes = await fetch('/api/goals/1', {
     method: 'PUT',
     body: JSON.stringify({
@@ -87,19 +88,24 @@ async function putGoal(newGoalVal) {
     },
   });
   if (goalUpdateRes.ok) {
+    console.log('we go');
     document.location.reload();
   } else {
+    console.log('we fail');
     alert(goalUpdateRes.statusText);
   }
 }
 
-async function newGoalSubmit() {
+async function newGoalSubmit(event) {
+  event.preventDefault();
   const newGoal = goalInputEl.value;
   const dayTotal = document.getElementById('day-total');
 
   if (dayTotal) {
+    console.log('updating goal');
     putGoal(newGoal);
   } else {
+    console.log('still posting');
     postGoal(newGoal);
   }
 }
@@ -110,3 +116,5 @@ rndMeal();
 document.getElementById('new-post-form').addEventListener('submit', newPostSubmit);
 goalRevealBtn.addEventListener('click', showGoal);
 goalSubmitBtn.addEventListener('click', newGoalSubmit);
+
+// behavior: document is reloading when button gets clicked, shouldn't happen

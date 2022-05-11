@@ -5,8 +5,10 @@
       <div class="goal-visual d-flex flex-column justify-content-center ">
         {{#if goal}}
         <div id="day-total" class="text-center mb-5">
-          {{goal}}
-          Total Calories Today
+          <h1>
+            {{goal.dataValues.calorie_goal}}
+          </h1>
+          Total Calorie Goal
         </div>
         {{else}}
         <h3 class="text-danger fs-5 text-center fw-bold border border-danger rounded">
