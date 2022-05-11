@@ -1,5 +1,3 @@
-const rndMealEl = document.querySelector('.rnd-meal');
-
 async function newPostSubmit(event) {
   event.preventDefault();
 
@@ -26,23 +24,5 @@ async function newPostSubmit(event) {
     alert(response.statusText);
   }
 }
-
-async function rndMeal() {
-  // const url = 'https://www.themealdb.com/api/json/v1/9973533/random.php';
-  const url = 'https://www.themealdb.com/api/json/v1/1/random.php';
-
-  console.log(url);
-
-  rndMealEl.innerHtml = '';
-  const mealResponse = await fetch(url);
-  console.log(mealResponse);
-  if (mealResponse.ok) {
-    const link = mealResponse.meals[0].strSource;
-    console.log(link);
-    // rndMealEl.innerHtml = '<a href=""'
-  }
-}
-
-rndMeal();
 
 document.getElementById('new-post-form').addEventListener('submit', newPostSubmit);

@@ -2,11 +2,14 @@ const router = require('express').Router();
 const { Post, Goal } = require('../models');
 
 router.get('/', (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
   Post.findAll({
     where: {
       user_id: req.session.user_id,
     },
-    // if no session user id, document.location.replace(/)
   })
     .then((dbPostData) => {
       const posts = dbPostData.map((post) => post.get({ plain: true }));

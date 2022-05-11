@@ -44,7 +44,7 @@ router.get('/', (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) { // if already logged in. Add logout first before uncommenting
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
   res.render('login');
