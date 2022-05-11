@@ -1,12 +1,14 @@
 <div class="container">
   <div class="row justify-content-between">
-    <div class="col-4 bg-primary bg-opacity-50 p-3 rounded shadow">
+    <div class="col-4 bg-primary bg-opacity-50 bg-gradient p-3 rounded shadow">
+
       <div class="goal-visual">
         <div id="day-total" class="text-center mb-5">
           {{goal}}
           Total Calories Today
         </div>
       </div>
+
       <div class="new-post-wrapper">
         <form id="new-post-form">
           <h3 class="fw-bold fs-3 text-white text-center border-bottom border-white border-2 mb-4 pb-2">
@@ -23,10 +25,11 @@
           <label for="Time" class="fw-bold">When did you have this meal?</label>
           <input name="Time" type="datetime-local" class="mb-4" />
 
-          <button type="submit" class="btn-danger btn-lg">Post Meal</button>
+          <button type="submit" class="btn-danger btn-lg border border-light shadow">Post Meal</button>
 
         </form>
       </div>
+
       <div class="rnd-meal-wrapper">
         <article class="rnd-meal">
 
@@ -37,7 +40,7 @@
     <div class="col-7">
       <ul class="list-group">
         {{#each posts as |post|}}
-        <li class="list-group-item d-flex justify-content-between align-items-start shadow">
+        <li class="list-group-item d-flex justify-content-between align-items-start shadow mb-4 p-4">
           <div class="ms-2 me-auto">
             <div class="fw-bold">{{post.date_time}}</div>
             {{post.meal_desc}}
