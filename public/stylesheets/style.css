@@ -176,3 +176,8 @@
     padding: 1%;
     font-size: 110%;
   }
+
+  .posts-div {
+    overflow-y: scroll;
+    height: 70vh;
+  }
