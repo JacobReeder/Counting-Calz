@@ -1,5 +1,3 @@
-const rndMealEl = document.querySelector('.rnd-meal');
-
 async function newPostSubmit(event) {
   event.preventDefault();
 

@@ -1,41 +1,47 @@
-<div class="log-forms-wrapper">
-  
-  <div class="login-wrapper">
-    <form class="login-form">
-      <div>
-        <label for="email-login">Email:</label>
-        <input type="text" id="email-login" />
-      </div>
-      <div>
-        <label for="password-login">Password:</label>
-        <input type="password" id="password-login" />
-      </div>
-      <div>
-        <button type="submit">Login</button>
-      </div>
-    </form>
-  </div>
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-5 shadow border border-danger">
+      <form class="login-form">
+        <h1 class="fs-3 text-danger text-center fw-bold border-bottom border-danger border-2 pb-3 my-3">
+          Log In
+        </h1>
+        <div>
+          <label for="email-login" class="fw-bold">Email:</label>
+          <input type="email" id="email-login" class="form-control" />
+        </div>
+        <div>
+          <label for="password-login" class="fw-bold">Password:</label>
+          <input type="password" id="password-login" class="form-control"/>
+        </div>
+        <div>
+          <button type="submit" class="btn-danger btn-lg">Login</button>
+        </div>
+      </form>
+    </div>
 
-  <div class="signup-wrapper">
-    <form class="signup-form">
-      <div>
-        <label for="username-signup">Username:</label>
-        <input type="text" id="username-signup" />
-      </div>
-      <div>
-        <label for="email-signup">Email:</label>
-        <input type="text" id="email-signup" />
-      </div>
-      <div>
-        <label for="password-signup">Password:</label>
-        <input type="password" id="password-signup" />
-      </div>
-      <div>
-        <button type="submit">Sign Up</button>
-      </div>
-    </form>
+    <div class="col-5 shadow border border-danger">
+      <form class="signup-form">
+        <h1 class="fs-3 text-danger text-center fw-bold border-bottom border-danger border-2 pb-3 my-3">
+          Sign Up
+        </h1>
+        <div>
+          <label for="username-signup" class="fw-bold">Username:</label>
+          <input type="text" id="username-signup" class="form-control"/>
+        </div>
+        <div>
+          <label for="email-signup" class="fw-bold">Email:</label>
+          <input type="text" id="email-signup" class="form-control"/>
+        </div>
+        <div>
+          <label for="password-signup" class="fw-bold">Password:</label>
+          <input type="password" id="password-signup" class="form-control"/>
+        </div>
+        <div>
+          <button type="submit" class="btn-danger btn-lg">Sign Up</button>
+        </div>
+      </form>
+    </div>
   </div>
-
 </div>
 
 <script src="/javascript/login.js"></script>

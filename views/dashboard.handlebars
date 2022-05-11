@@ -1,57 +1,57 @@
-<div class="sidebar">
-  <div class="goal-visual">
-    <div id="day-total">
-      {{goal}} Calories for the day
-    </div>
-  </div>
-  <div class="new-post-wrapper">
-    <form id="new-post-form">
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-4 bg-primary bg-opacity-50 bg-gradient p-3 rounded shadow">
 
-      <label for="Calories">Calories</label>
-      <input name="Calories" type="number" min="1" max="3000" />
-
-      <label for="Description">Meal Description</label>
-      <textarea name="Description" rows="5" cols="35" placeholder="(240 characters max)"></textarea>
-
-      <label for="Time">When did you have this meal?</label>
-      <input name="Time" type="datetime-local" />
-
-      <button type="submit" class="post-submit">Post Meal</button>
-
-    </form>
-  </div>
-  <div class="rnd-meal-wrapper">
-    <article class="rnd-meal">
-      
-    </article>
-  </div>
-</div>
-
-<div class="posts-wrapper">
-  <ul class="post-list">
-    {{#each posts as |post|}}
-    <li>
-      <article class="posted-mealdw">
-
-        <div class="left-post-wrapper">
-          <div class="caloric-intake">
-            {{post.calories}} Cal.
-          </div>
-          <div class="post-time">
-            {{post.date_time}}
-          </div>
+      <div class="goal-visual">
+        <div id="day-total" class="text-center mb-5">
+          {{goal}}
+          Total Calories Today
         </div>
+      </div>
 
-        <div class="right-post-wrapper">
-          <div class="post-desc">
+      <div class="new-post-wrapper">
+        <form id="new-post-form">
+          <h3 class="fw-bold fs-3 text-white text-center border-bottom border-white border-2 mb-4 pb-2">
+            New Post Submit
+          </h3>
+
+          <label for="Calories" class="fw-bold">Calories</label>
+          <input name="Calories" type="number" min="1" max="3000" class="mb-4" />
+
+          <label for="Description" class="fw-bold">Meal Description</label>
+          <textarea name="Description" rows="3" cols="35" placeholder="(240 characters max)"
+            class="form-control mb-4"></textarea>
+
+          <label for="Time" class="fw-bold">When did you have this meal?</label>
+          <input name="Time" type="datetime-local" class="mb-4" />
+
+          <button type="submit" class="btn-danger btn-lg border border-light shadow">Post Meal</button>
+
+        </form>
+      </div>
+
+      <div class="rnd-meal-wrapper">
+        <article class="rnd-meal">
+
+        </article>
+      </div>
+    </div>
+
+    <div class="col-7">
+      <ul class="list-group">
+        {{#each posts as |post|}}
+        <li class="list-group-item d-flex justify-content-between align-items-start shadow mb-4 p-4">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">{{post.date_time}}</div>
             {{post.meal_desc}}
           </div>
-        </div>
-
-      </article>
-    </li>
-    {{/each}}
-  </ul>
+          <span class="badge bg-primary rounded-pill">{{post.calories}} kcal</span>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
 </div>
+
 
 <script src="/javascript/dashboard.js"></script>

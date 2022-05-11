@@ -3,7 +3,9 @@ const sequelize = require('../config/connection');
 const { Post, User, Goal } = require('../models');
 
 router.get('/', (req, res) => {
-  res.render('homepage');
+  res.render('homepage', {
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 /* router.get('/', (req, res) => {
@@ -42,7 +44,7 @@ router.get('/', (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) { // if already logged in. Add logout first before uncommenting
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
   res.render('login');
