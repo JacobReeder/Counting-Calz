@@ -176,3 +176,32 @@
     padding: 1%;
     font-size: 110%;
   }
+
+  .posts-div {
+    overflow-y: scroll;
+    height: 80vh;
+  }
+
+  .rnd-meal-title {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .meal-thumbnail {
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    border: solid 1px rgb(157, 149, 149);
+  }
+
+  .rnd-meal img:hover {
+    opacity: 0.8;
+  }
+
+  .meal-name {
+    text-align: center;
+    padding-top: 10px;
+    font-size: 32px;
+    font-weight: bold;
+  }

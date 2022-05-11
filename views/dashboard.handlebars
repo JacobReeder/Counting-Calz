@@ -2,16 +2,27 @@
   <div class="row justify-content-between">
     <div class="col-4 bg-primary bg-opacity-50 bg-gradient p-3 rounded shadow">
 
-      <div class="goal-visual">
+      <div class="goal-visual d-flex flex-column justify-content-center ">
+        {{#if goal}}
         <div id="day-total" class="text-center mb-5">
-          {{goal}}
-          Total Calories Today
+          <h1>
+            {{goal.dataValues.calorie_goal}}
+          </h1>
+          Daily Calorie Goal
         </div>
+        {{else}}
+        <h3 class="text-danger fs-5 text-center fw-bold border border-danger rounded">
+          You do not have a goal set yet
+        </h3>
+        {{/if}}
+        <button class="btn-danger btn-sm border border-light shadow" id="open-goal-btn">Edit Goal</button>
+        <input type="number" name="cal-goal" id="goal-input" class="visually-hidden" />
+        <button class="visually-hidden" id="goal-submit">Submit Goal</button>
       </div>
 
       <div class="new-post-wrapper">
         <form id="new-post-form">
-          <h3 class="fw-bold fs-3 text-white text-center border-bottom border-white border-2 mb-4 pb-2">
+          <h3 class="fw-bold fs-3 text-white text-center border-bottom border-white border-2 my-4 pb-2">
             New Post Submit
           </h3>
 
@@ -26,18 +37,15 @@
           <input name="Time" type="datetime-local" class="mb-4" />
 
           <button type="submit" class="btn-danger btn-lg border border-light shadow">Post Meal</button>
-
         </form>
-      </div>
 
-      <div class="rnd-meal-wrapper">
-        <article class="rnd-meal">
-
-        </article>
+        <div class="rnd-meal">
+          <h3 class="rnd-meal-title">Try this meal out!</h3>
+        </div>
       </div>
     </div>
 
-    <div class="col-7">
+    <div class="col-7 posts-div">
       <ul class="list-group">
         {{#each posts as |post|}}
         <li class="list-group-item d-flex justify-content-between align-items-start shadow mb-4 p-4">
@@ -45,7 +53,7 @@
             <div class="fw-bold">{{post.date_time}}</div>
             {{post.meal_desc}}
           </div>
-          <span class="badge bg-primary rounded-pill">{{post.calories}} kcal</span>
+          <span class="badge bg-primary rounded-pill">{{post.calories}} cal</span>
         </li>
         {{/each}}
       </ul>

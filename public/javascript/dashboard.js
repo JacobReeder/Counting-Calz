@@ -1,3 +1,8 @@
+const rndMealEl = document.querySelector('.rnd-meal');
+const goalRevealBtn = document.getElementById('open-goal-btn');
+const goalInputEl = document.getElementById('goal-input');
+const goalSubmitBtn = document.getElementById('goal-submit');
+
 async function newPostSubmit(event) {
   event.preventDefault();
 
@@ -29,15 +34,30 @@ async function rndMeal() {
   // const url = 'https://www.themealdb.com/api/json/v1/9973533/random.php';
   const url = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
-  console.log(url);
-
   rndMealEl.innerHtml = '';
   fetch(url)
     .then((res) => res.json())
     .then((res) => {
       console.log(res.meals[0]);
       if (res.meals[0].strSource !== '') {
-        console.log(res.meals[0].strSource);
+        const mealLink = res.meals[0].strSource;
+        const mealName = res.meals[0].strMeal;
+        const mealThumbnail = res.meals[0].strMealThumb;
+
+        const linkEl = document.createElement('a');
+        linkEl.setAttribute('href', mealLink);
+        rndMealEl.appendChild(linkEl);
+
+        const thumbnailEl = document.createElement('img');
+        thumbnailEl.classList = ('meal-thumbnail');
+        thumbnailEl.setAttribute('src', mealThumbnail);
+        thumbnailEl.setAttribute('alt', mealName);
+        linkEl.appendChild(thumbnailEl);
+
+        const mealNameEl = document.createElement('h4');
+        mealNameEl.classList = ('meal-name');
+        mealNameEl.textContent = (mealName);
+        rndMealEl.appendChild(mealNameEl);
       } else {
         rndMeal();
       }
@@ -45,9 +65,70 @@ async function rndMeal() {
     .catch((err) => {
       console.log(err);
     });
-  // rndMealEl.innerHtml = '<a href=""'
+}
+
+function showGoal() {
+  goalRevealBtn.className = 'visually-hidden';
+  goalInputEl.className = 'form-control mb-1';
+  goalSubmitBtn.className = 'btn btn-danger border border-light shadow';
+}
+
+async function postGoal(newGoalPost) {
+  const goalUpdateRes = await fetch('/api/goals', {
+    method: 'POST',
+    body: JSON.stringify({
+      newGoalPost,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  if (goalUpdateRes.ok) {
+    document.location.reload();
+  } else {
+    alert(goalUpdateRes.statusText);
+  }
+}
+
+async function putGoal(newGoalVal) {
+  console.log('here');
+  const goalUpdateRes = await fetch('/api/goals/1', {
+    method: 'PUT',
+    body: JSON.stringify({
+      newGoalVal,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  if (goalUpdateRes.ok) {
+    console.log('we go');
+    document.location.reload();
+  } else {
+    console.log('we fail');
+    alert(goalUpdateRes.statusText);
+  }
+}
+
+async function newGoalSubmit(event) {
+  event.preventDefault();
+  const newGoal = goalInputEl.value;
+  const dayTotal = document.getElementById('day-total');
+
+  if (dayTotal) {
+    console.log('updating goal');
+    putGoal(newGoal);
+  } else {
+    console.log('still posting');
+    postGoal(newGoal);
+  }
 }
 
 rndMeal();
 
+// event listeners
 document.getElementById('new-post-form').addEventListener('submit', newPostSubmit);
+goalRevealBtn.addEventListener('click', showGoal);
+goalSubmitBtn.addEventListener('click', newGoalSubmit);
+
+// behavior: document is reloading when button gets clicked, shouldn't happen
