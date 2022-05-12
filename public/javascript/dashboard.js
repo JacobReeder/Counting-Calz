@@ -30,11 +30,11 @@ async function newPostSubmit(event) {
   }
 }
 
-async function rndMeal() {
+function rndMeal() {
   // const url = 'https://www.themealdb.com/api/json/v1/9973533/random.php';
   const url = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
-  rndMealEl.innerHtml = '';
+  rndMealEl.innerHTML = '';
   fetch(url)
     .then((res) => res.json())
     .then((res) => {
@@ -43,6 +43,11 @@ async function rndMeal() {
         const mealLink = res.meals[0].strSource;
         const mealName = res.meals[0].strMeal;
         const mealThumbnail = res.meals[0].strMealThumb;
+
+        const mealTitleEl = document.createElement('h3');
+        mealTitleEl.classList = ('rnd-meal-title');
+        mealTitleEl.textContent = ('Try this meal out!');
+        rndMealEl.appendChild(mealTitleEl);
 
         const linkEl = document.createElement('a');
         linkEl.setAttribute('href', mealLink);
@@ -67,7 +72,8 @@ async function rndMeal() {
     });
 }
 
-function showGoal() {
+function showGoal(event) {
+  event.preventDefault();
   goalRevealBtn.className = 'visually-hidden';
   goalInputEl.className = 'form-control mb-1';
   goalSubmitBtn.className = 'btn btn-danger border border-light shadow';
@@ -84,7 +90,9 @@ async function postGoal(newGoalPost) {
     },
   });
   if (goalUpdateRes.ok) {
-    document.location.reload();
+    setTimeout(() => {
+      document.location.reload();
+    }, '5000');
   } else {
     alert(goalUpdateRes.statusText);
   }
@@ -103,21 +111,23 @@ async function putGoal(newGoalVal) {
   });
   if (goalUpdateRes.ok) {
     console.log('we go');
-    document.location.reload();
+    setTimeout(() => {
+      document.location.reload();
+    }, '5000');
   } else {
     console.log('we fail');
     alert(goalUpdateRes.statusText);
   }
 }
 
-async function newGoalSubmit(event) {
+function newGoalSubmit(event) {
   event.preventDefault();
   const newGoal = goalInputEl.value;
   const dayTotal = document.getElementById('day-total');
 
   if (dayTotal) {
     console.log('updating goal');
-    putGoal(newGoal);
+    putGoal(newGoal, event);
   } else {
     console.log('still posting');
     postGoal(newGoal);
