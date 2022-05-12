@@ -42,7 +42,7 @@
         {{#each posts as |post|}}
         <li class="list-group-item d-flex justify-content-between align-items-start shadow mb-4 p-4">
           <div class="ms-2 me-auto">
-            <div class="fw-bold">{{post.date_time}}</div>
+            <div class="fw-bold">On {{format_date date_time}}</div>
             {{post.meal_desc}}
           </div>
           <span class="badge bg-primary rounded-pill">{{post.calories}} kcal</span>
