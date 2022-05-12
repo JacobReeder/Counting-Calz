@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
     return;
   }
   Post.findAll({
+    order: [['created_at', 'DESC']],
     where: {
       user_id: req.session.user_id,
     },

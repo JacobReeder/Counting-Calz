@@ -11,6 +11,10 @@ async function newPostSubmit(event) {
   const dateTime = document.querySelector('input[name="Time"]').value;
   console.log(calories, mealDesc, dateTime);
 
+  if (!calories || !mealDesc || !dateTime) {
+    window.alert('Please enter all necessary info');
+    return;
+  }
   const response = await fetch('/api/posts', {
     method: 'POST',
     body: JSON.stringify({
@@ -90,9 +94,7 @@ async function postGoal(newGoalPost) {
     },
   });
   if (goalUpdateRes.ok) {
-    setTimeout(() => {
-      document.location.reload();
-    }, '5000');
+    document.location.reload();
   } else {
     alert(goalUpdateRes.statusText);
   }
