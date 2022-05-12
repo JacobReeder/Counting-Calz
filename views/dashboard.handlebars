@@ -15,9 +15,9 @@
           You do not have a goal set yet
         </h3>
         {{/if}}
-        <button class="btn-danger btn-sm border border-light shadow" id="open-goal-btn">Edit Goal</button>
-        <input type="number" name="cal-goal" id="goal-input" class="visually-hidden" />
-        <button class="visually-hidden" id="goal-submit">Submit Goal</button>
+          <button class="btn-danger btn-sm border border-light shadow" id="open-goal-btn">Edit Goal</button>
+          <input type="number" name="cal-goal" id="goal-input" class="visually-hidden"/>
+          <button class="visually-hidden" id="goal-submit">Submit Goal</button>
       </div>
 
       <div class="new-post-wrapper">
@@ -38,9 +38,10 @@
 
           <button type="submit" class="btn-danger btn-lg border border-light shadow">Post Meal</button>
         </form>
-
-        <div class="rnd-meal">
-          <h3 class="rnd-meal-title">Try this meal out!</h3>
+        <div class="rnd-meal-container">
+          <div class="rnd-meal">
+            {{!-- The random meals will populate this area. --}}
+          </div>
         </div>
       </div>
     </div>
