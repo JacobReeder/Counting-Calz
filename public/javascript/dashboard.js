@@ -45,7 +45,7 @@ function rndMeal() {
         const mealThumbnail = res.meals[0].strMealThumb;
 
         const mealTitleEl = document.createElement('h3');
-        mealTitleEl.classList = ('rnd-meal-title');
+        mealTitleEl.className = ('fs-3 fw-bold text-white text-center border-bottom border-white border-2 my-4 pb-2');
         mealTitleEl.textContent = ('Try this meal out!');
         rndMealEl.appendChild(mealTitleEl);
 
@@ -57,12 +57,12 @@ function rndMeal() {
         thumbnailEl.classList = ('meal-thumbnail');
         thumbnailEl.setAttribute('src', mealThumbnail);
         thumbnailEl.setAttribute('alt', mealName);
-        linkEl.appendChild(thumbnailEl);
 
         const mealNameEl = document.createElement('h4');
-        mealNameEl.classList = ('meal-name');
+        mealNameEl.classList = ('fs-5 text-white text-center my-1');
         mealNameEl.textContent = (mealName);
-        rndMealEl.appendChild(mealNameEl);
+        linkEl.appendChild(thumbnailEl);
+        linkEl.appendChild(mealNameEl);
       } else {
         rndMeal();
       }
