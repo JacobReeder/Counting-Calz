@@ -99,7 +99,6 @@ async function postGoal(newGoalPost) {
 }
 
 async function putGoal(newGoalVal) {
-  console.log('here');
   const goalUpdateRes = await fetch('/api/goals/1', {
     method: 'PUT',
     body: JSON.stringify({
@@ -110,12 +109,8 @@ async function putGoal(newGoalVal) {
     },
   });
   if (goalUpdateRes.ok) {
-    console.log('we go');
-    setTimeout(() => {
-      document.location.reload();
-    }, '5000');
+    document.location.reload();
   } else {
-    console.log('we fail');
     alert(goalUpdateRes.statusText);
   }
 }
@@ -126,10 +121,8 @@ function newGoalSubmit(event) {
   const dayTotal = document.getElementById('day-total');
 
   if (dayTotal) {
-    console.log('updating goal');
     putGoal(newGoal, event);
   } else {
-    console.log('still posting');
     postGoal(newGoal);
   }
 }
