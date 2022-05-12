@@ -127,11 +127,19 @@ function newGoalSubmit(event) {
   }
 }
 
+function deletePost() {
+  const postEl = this;
+  console.log(this);
+
+  const postId = this;
+}
+
 rndMeal();
 
 // event listeners
 document.getElementById('new-post-form').addEventListener('submit', newPostSubmit);
 goalRevealBtn.addEventListener('click', showGoal);
 goalSubmitBtn.addEventListener('click', newGoalSubmit);
+document.querySelector('.btn-white').addEventListener('click', deletePost);
 
 // behavior: document is reloading when button gets clicked, shouldn't happen
