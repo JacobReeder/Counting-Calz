@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
       })
         .then((dbPostData2) => {
           const goal = dbPostData2;
-          console.log(goal);
+          // console.log(goal);
           res.render('dashboard', {
             posts,
             goal,
