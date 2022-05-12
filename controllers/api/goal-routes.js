@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Goal } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // get the goal
 // shouldn't need this route, -tneswick
@@ -29,7 +30,7 @@ const { User, Goal } = require('../../models');
 //     });
 // });
 
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
   // expects {calorie_goal: 3200, user_id: 1}
   Goal.create({
     id: req.session.user_id,
@@ -46,7 +47,7 @@ router.post('/', (req, res) => {
 router.put('/1', (req, res) => {
   Goal.update(
     {
-      calorie_count: req.body.newGoalVal,
+      calorie_goal: req.body.newGoalVal,
     },
     {
       where: {

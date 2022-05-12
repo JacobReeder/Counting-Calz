@@ -127,7 +127,7 @@ function newGoalSubmit(event) {
 
   if (dayTotal) {
     console.log('updating goal');
-    putGoal(newGoal, event);
+    putGoal(newGoal);
   } else {
     console.log('still posting');
     postGoal(newGoal);
