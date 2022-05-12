@@ -45,6 +45,7 @@ router.post('/', withAuth, (req, res) => {
 });
 
 router.put('/1', (req, res) => {
+  console.log(req.body.newGoalVal);
   Goal.update(
     {
       calorie_goal: req.body.newGoalVal,
@@ -60,9 +61,11 @@ router.put('/1', (req, res) => {
         res.status(404).json({ message: 'No can do' });
         return;
       }
+      console.log('Backend Successful');
       res.json(dbPostData);
     })
     .catch((err) => {
+      console.log('UPDATE FAILED \n =================');
       console.log(err);
       res.status(500).json(err);
     });
