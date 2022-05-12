@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row justify-content-center">
+    
+    {{#if loggedIn}}
+    <div class="col-4 d-flex justify-content-center">
+      <button id="dashboard-btn" class="fs-5 fw-bold text-light btn-danger shadow btn btn-lg position-absolute top-50 start-50 translate-middle">Head To Dashboard</button>
+      <h2 class="fs-4 text-white">
+        You are logged in
+      </h2>
+    </div>
+    <script src="/javascript/dashboardButton.js"></script>
+    {{else}}
+
+    {{> splash-page}}
+
+    {{/if}}
+
+  </div>
+</div>

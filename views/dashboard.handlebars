@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-4 bg-primary bg-opacity-50 bg-gradient p-3 rounded shadow">
+
+      <div class="goal-visual d-flex flex-column justify-content-center ">
+        {{#if goal}}
+        <div id="day-total" class="text-center mb-5">
+          <h1>
+            {{goal.dataValues.calorie_goal}}
+          </h1>
+          Daily Calorie Goal
+        </div>
+        {{else}}
+        <h3 class="text-danger fs-5 text-center fw-bold border border-danger rounded">
+          You do not have a goal set yet
+        </h3>
+        {{/if}}
+          <button class="btn-danger btn-sm border border-light shadow" id="open-goal-btn">Edit Goal</button>
+          <input type="number" name="cal-goal" id="goal-input" class="visually-hidden"/>
+          <button class="visually-hidden" id="goal-submit">Submit Goal</button>
+      </div>
+
+      <div class="new-post-wrapper">
+        <form id="new-post-form">
+          <h3 class="fw-bold fs-3 text-white text-center border-bottom border-white border-2 my-4 pb-2">
+            New Post Submit
+          </h3>
+
+          <label for="Calories" class="fw-bold">Calories</label>
+          <input name="Calories" type="number" min="1" max="3000" class="mb-4" />
+
+          <label for="Description" class="fw-bold">Meal Description</label>
+          <textarea name="Description" rows="3" cols="35" placeholder="(240 characters max)"
+            class="form-control mb-4"></textarea>
+
+          <label for="Time" class="fw-bold">When did you have this meal?</label>
+          <input name="Time" type="datetime-local" class="mb-4" />
+
+          <button type="submit" class="btn-danger btn-lg border border-light shadow">Post Meal</button>
+        </form>
+        <div class="rnd-meal-container">
+          <div class="rnd-meal">
+            {{!-- The random meals will populate this area. --}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-7 posts-div">
+      <ul class="list-group">
+        {{#each posts as |post|}}
+        <li class="list-group-item d-flex justify-content-between align-items-start shadow mb-4 p-4">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">On {{format_date date_time}}</div>
+            {{post.meal_desc}}
+          </div>
+          <span class="badge bg-primary rounded-pill">{{post.calories}} cal</span>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<script src="/javascript/dashboard.js"></script>
