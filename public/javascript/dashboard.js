@@ -127,19 +127,37 @@ function newGoalSubmit(event) {
   }
 }
 
-function deletePost() {
-  const postEl = this;
-  console.log(this);
+async function deletePost() {
+  const postEl = this.id;
+  const idArr = postEl.split('-');
+  const id = parseInt(idArr[1]);
 
-  const postId = this;
+  const delResponse = await fetch('/api/posts', {
+    method: 'DELETE',
+    body: JSON.stringify({
+      id,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  if (delResponse.ok) {
+    document.location.reload();
+  } else {
+    alert(delResponse.statusText);
+  }
 }
 
 rndMeal();
 
 // event listeners
 document.getElementById('new-post-form').addEventListener('submit', newPostSubmit);
-goalRevealBtn.addEventListener('click', showGoal);
-goalSubmitBtn.addEventListener('click', newGoalSubmit);
-document.querySelector('.btn-white').addEventListener('click', deletePost);
 
-// behavior: document is reloading when button gets clicked, shouldn't happen
+goalRevealBtn.addEventListener('click', showGoal);
+
+goalSubmitBtn.addEventListener('click', newGoalSubmit);
+
+// all delete buttons
+document.querySelectorAll('.btn-white').forEach((item) => {
+  item.addEventListener('click', deletePost);
+});
