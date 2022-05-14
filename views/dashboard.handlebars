@@ -4,8 +4,8 @@
 
       <div class="goal-visual d-flex flex-column justify-content-center ">
         {{#if goal}}
-        <div id="day-total" class="text-center mb-5">
-          <h2 class="fs-1 fw-bold text-white">
+        <div id="day-total" class="text-center mb-5 text-white">
+          <h2 class="fs-1 fw-bold text-white text-shadow">
             {{goal.dataValues.calorie_goal}}
           </h2>
           Daily Calorie Goal
@@ -22,7 +22,7 @@
 
       <div class="new-post-wrapper">
         <form id="new-post-form">
-          <h3 class="fw-bold fs-3 text-white text-center border-bottom border-white border-2 my-4 pb-2">
+          <h3 class="fw-bold fs-3 text-white text-center border-bottom border-white border-2 my-4 pb-2 text-shadow">
             New Post Submit
           </h3>
 
@@ -42,6 +42,7 @@
           <div class="rnd-meal">
             {{!-- The random meals will populate this area. --}}
           </div>
+          <button id="next-meal-btn" class="btn-danger btn-sm border border-light shadow mx-auto">Next Meal</button>
         </div>
       </div>
     </div>
@@ -54,7 +55,7 @@
             <div class="fw-bold">On {{format_date date_time}}</div>
             {{post.meal_desc}}
           </div>
-          <span class="badge bg-primary rounded-pill">{{post.calories}} cal</span>
+          <span class="badge bg-primary rounded-pill shadow">{{post.calories}} cal</span>
           <button id="postId-{{post.id}}" class="btn btn-white ms-3 p-0"><i class="bi bi-trash3"></i></button>
         </li>
         {{/each}}
@@ -65,3 +66,4 @@
 
 
 <script src="/javascript/dashboard.js"></script>
+<script src="/javascript/mealAPI.js"></script>
